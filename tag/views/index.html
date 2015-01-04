@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ordklasstagga - Hitta ordklasser och egennamn i svensk text</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+    <style>
+        body, textarea {
+            font: 1em/1.4 Raleway, sans-serif;
+        }
+        body {
+            background: #EEE9E9;
+            margin: 0 auto 4em;
+            max-width: 96%;
+            width: 600px;
+        }
+        h1 { font-family: "Raleway SemiBold", sans-serif; }
+        h1, h2 { margin-bottom: -0.25em; }
+        a { color: #0078E7; }
+        textarea {
+            font-size: 0.9em;
+            margin-top: 1em;
+        }
+        form p.error {
+            margin-bottom: 0;
+            color: #c33;
+        }
+        form p.action { text-align: right; }
+        table { margin-top: 1em; }
+            table td { vertical-align: top; }
+                table td.morph { white-space: nowrap; }
+                table td em {
+                    font-style: normal;
+                    display: inline-block;
+                    width: 7.5em;
+                }
+            table.pure-table tbody th {
+                background: #f5f5f5;
+                border-bottom: 1px solid #cbcbcb;
+                border-width: 0 0 1px 1px;
+                text-align: left;
+                vertical-align: top;
+            }
+    </style>
+</head>
+<body>
+    <h1>Hitta ordklasser i svensk text</h1>
+    <p>Här kan du hitta ordklasser (substantiv, verb, adjektiv, ...) i svensk text. Tjänsten bygger på <a href="http://json-tagger.heroku.com">JSON Tagger-API:et</a>, och är gjord av <a href="http://twitter.com/EmilStenstrom">Emil Stenström</a>.</p>
+
+    <h2>Skriv in en svensk mening:</h2>
+    <form action="." method="post" class="pure-form">
+        % if defined('error'):
+            <p class="error">{{ error }}</p>
+        % end
+        <textarea id="data" name="data" class="pure-input-1" rows="4">{{ data }}</textarea>
+        <p class="action"><button type="submit" class="pure-button pure-button-primary">Ordklasstagga &raquo;</button></p>
+    </form>
+
+    % if defined('result'):
+        <h2>Ordklasstaggar:</h2>
+        <p>Alla ordklasser och böjningsformer har förklaringar på wikipedia.</p>
+        % for sentence in result:
+            <table class="pure-table pure-table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ord</th>
+                        <th>Ordklass</th>
+                        <th>Böjningsmönster</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    % for word in sentence:
+                        <tr>
+                            <th>{{ word["word_form"] }}</th>
+                            <td>{{ word["pos_tag"] }}</td>
+                            % if word["morph_feat"]:
+                                <td class="morph">
+                                    % for feat in word["morph_feat"]:
+                                        <em>{{ feat["group"] }}:</em> {{ feat["name"] }}<br>
+                                    % end
+                                </td>
+                            % else:
+                                <td></td>
+                            % end
+                        </tr>
+                    % end
+                </tbody>
+            </table>
+        % end
+    % end
+</body>
+</html>

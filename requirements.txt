@@ -1,0 +1,4 @@
+Fabric==1.10.1
+bottle==0.12.7
+newrelic==2.40.0.34
+requests==2.5.1
