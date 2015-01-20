@@ -43,6 +43,7 @@ MORPH_MAPPING = {
     "NOM": {"group": "Kasus", "name": "Nominativ"},
     "GEN": {"group": "Kasus", "name": "Genitiv"},
     "PRS": {"group": "Tempus", "name": "Presens"},
+    "IMP": {"group": "Tempus", "name": "Imperfekt/Preteritum"},
     "PRT": {"group": "Tempus", "name": "Imperfekt/Preteritum"},
     "SUP": {"group": "Tempus", "name": "Supinum"},
     "INF": {"group": "Tempus", "name": "Infinitiv"},
