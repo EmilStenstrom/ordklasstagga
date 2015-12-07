@@ -11,7 +11,7 @@ if __name__ == "__main__":
         print("RUNNING IN DEVELOPMENT MODE")
         bottle.debug(True)
         bottle.TEMPLATES.clear()
-        run(host='localhost', port=8000, reloader=True)
+        run(host='localhost', port=9000, reloader=True)
     elif environment == "production":
         print("RUNNING IN PRODUCTION MODE")
         run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
