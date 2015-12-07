@@ -90,7 +90,6 @@ def index():
                     "word_form": word["word_form"],
                     "pos_tag": POS_MAPPING[word["pos_tag"]],
                     "morph_feat": features,
-                    "lemma": word["lemma"],
                 })
 
             out_sentences.append(out_sentence)
