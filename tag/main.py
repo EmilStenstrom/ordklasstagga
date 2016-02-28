@@ -64,7 +64,7 @@ MORPH_MAPPING = {
 @route('/', method=["get", "post"])
 @view('tag/views/index')
 def index():
-    data = request.POST.getunicode("data", None)
+    data = request.POST.getunicode("data", "").encode("utf-8")
 
     if request.POST:
         if not data:
