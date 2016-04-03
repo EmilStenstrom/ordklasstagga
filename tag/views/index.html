@@ -66,6 +66,7 @@
                 <thead>
                     <tr>
                         <th>Ord</th>
+                        <th>Grundform</th>
                         <th>Ordklass</th>
                         <th>Böjningsmönster</th>
                     </tr>
@@ -74,6 +75,7 @@
                     % for word in sentence:
                         <tr>
                             <th>{{ word["word_form"] }}</th>
+                            <td>{{ word["lemma"] }}</td>
                             <td>{{ word["pos_tag"] }}</td>
                             % if word["morph_feat"]:
                                 <td class="morph">
