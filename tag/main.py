@@ -82,14 +82,14 @@ def index():
             out_sentence = []
             for word in sentence:
                 features = []
-                if word["morph_feat"]:
-                    features = re.split(r"\||\/", word["morph_feat"])
+                if word["suc_tags"]["features"]:
+                    features = re.split(r"\||\/", word["suc_tags"]["features"])
                     features = [MORPH_MAPPING[feat] for feat in features if feat != "-"]
 
                 out_sentence.append({
                     "word_form": word["word_form"],
                     "lemma": word["lemma"],
-                    "pos_tag": POS_MAPPING[word["pos_tag"]],
+                    "pos_tag": POS_MAPPING[word["suc_tags"]["pos_tag"]],
                     "morph_feat": features,
                 })
 
