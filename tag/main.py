@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bottle import route, request, view
+from bottle import hook, route, request, view
 import requests
 import re
 
@@ -65,6 +65,15 @@ FEATURES = {
     "Voice=Act": {"group": "Diates", "name": "Aktivum"},
     "Voice=Pass": {"group": "Diates", "name": "Passivum"},
 }
+
+@hook('before_request')
+def redirect_to_https():
+    host = request.urlparts[1]
+    host = request.urlparts[1][:request.urlparts[1].rindex(":")]
+
+    if host not in ["localhost", "127.0.0.1"] and request.url.startswith('http://'):
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 
 @route('/', method=["get", "post"])
 @view('tag/views/index')
