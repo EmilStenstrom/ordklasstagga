@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bottle import hook, route, request, response, view
+from bottle import hook, route, request, response, view, redirect
 import requests
 import re
 
