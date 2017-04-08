@@ -69,7 +69,8 @@ FEATURES = {
 @hook('before_request')
 def redirect_to_https():
     host = request.urlparts[1]
-    host = request.urlparts[1][:request.urlparts[1].rindex(":")]
+    if ":" in host:
+        host = host[:host.rindex(":")]
 
     if host not in ["localhost", "127.0.0.1"] and request.url.startswith('http://'):
         url = request.url.replace('http://', 'https://', 1)
