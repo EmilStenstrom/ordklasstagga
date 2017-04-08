@@ -75,6 +75,10 @@ def redirect_to_https():
         url = request.url.replace('http://', 'https://', 1)
         return redirect(url, code=301)
 
+@hook('after_request')
+def enable_hsts():
+    response.headers['Strict-Transport-Security'] = "max-age=31536000"
+
 @route('/', method=["get", "post"])
 @view('tag/views/index')
 def index():
@@ -87,8 +91,8 @@ def index():
                 "data": data,
             }
 
-        response = requests.post(JSON_TAGGER_ADDRESS, data=data)
-        result = response.json()
+        api_response = requests.post(JSON_TAGGER_ADDRESS, data=data)
+        result = api_response.json()
 
         sentences = result["sentences"]
         out_sentences = []
