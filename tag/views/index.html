@@ -77,9 +77,9 @@
                             <th>{{ word["word_form"] }}</th>
                             <td>{{ word["lemma"] }}</td>
                             <td>{{ word["pos_tag"] }}</td>
-                            % if word["morph_feat"]:
+                            % if word["features"]:
                                 <td class="morph">
-                                    % for feat in word["morph_feat"]:
+                                    % for feat in word["features"]:
                                         <em>{{ feat["group"] }}:</em> {{ feat["name"] }}<br>
                                     % end
                                 </td>
