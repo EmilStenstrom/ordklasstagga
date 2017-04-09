@@ -102,8 +102,8 @@ def index():
             for word in sentence:
                 features = []
                 if word["ud_tags"]["features"]:
-                    features = re.split(r"\||\/", word["ud_tags"]["features"])
-                    features = [FEATURES[feat] for feat in features if feat != "-"]
+                    features = word["ud_tags"]["features"]
+                    features = [FEATURES[key + "=" + value] for key, value in features.items()]
 
                 out_sentence.append({
                     "word_form": word["word_form"],
