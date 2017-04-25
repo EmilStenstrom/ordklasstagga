@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from bottle import hook, route, request, response, view, redirect
 import requests
-import re
 
 JSON_TAGGER_ADDRESS = "https://json-tagger.herokuapp.com/tag"
 DEFAULT_SENTENCE = "Fördomen har alltid sin rot i vardagslivet - Olof Palme"
