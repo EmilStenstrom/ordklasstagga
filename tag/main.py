@@ -2,7 +2,7 @@
 from bottle import hook, route, request, response, view, redirect
 import requests
 
-JSON_TAGGER_ADDRESS = "https://json-tagger.herokuapp.com/tag"
+JSON_TAGGER_ADDRESS = "https://json-tagger.com/tag"
 DEFAULT_SENTENCE = "Fördomen har alltid sin rot i vardagslivet - Olof Palme"
 POS_MAPPING = {
     "ADJ": "Adjektiv",
