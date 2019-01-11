@@ -1,3 +1,2 @@
 bottle==0.12.13
-newrelic==2.82.0.62
 requests==2.13.0
