@@ -30,7 +30,7 @@ pip-tools==6.0.1
     # via -r requirements-dev.in
 pycodestyle==2.7.0
     # via flake8
-pyflakes==2.3.0
+pyflakes==2.3.1
     # via flake8
 requests==2.25.1
     # via
