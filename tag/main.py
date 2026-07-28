@@ -71,7 +71,10 @@ def redirect_to_https():
     if ":" in host:
         host = host[:host.rindex(":")]
 
-    if host not in ["localhost", "127.0.0.1"] and request.url.startswith('http://'):
+    forwarded_proto = request.headers.get("X-Forwarded-Proto")
+    scheme = forwarded_proto.split(",", 1)[0].strip() if forwarded_proto else request.urlparts.scheme
+
+    if host not in ["localhost", "127.0.0.1"] and scheme != "https":
         url = request.url.replace('http://', 'https://', 1)
         return redirect(url, code=301)
 
